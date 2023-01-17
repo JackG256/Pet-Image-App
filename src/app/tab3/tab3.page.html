@@ -25,6 +25,24 @@
                 <h3 class="textContainer">How many times you have searched for a picture of a bird:</h3>
                 <h5 class="value">{{birdCounter}}</h5>
             </div>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label>Overwrite dog statistic:</ion-label>
+                    <ion-input type="number" name="edit" [(ngModel)]="editDog"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Overwrite cat statistic:</ion-label>
+                    <ion-input type="number" name="edit" [(ngModel)]="editCat"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Overwrite bird statistic:</ion-label>
+                    <ion-input type="number" name="edit" [(ngModel)]="editBird"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-button expand="block" (click)="saveEditData()">SET</ion-button>
         </div>
     </ion-content>
 </ion-content>
