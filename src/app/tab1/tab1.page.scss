@@ -4,12 +4,19 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: transparent;
 }
+
 .button {
     padding-top: 6px;
     padding-bottom: 6px;
     height: 80px;
-    width: 90%
+    width: 100%
+}
+
+.menuButton {
+    padding-left: 5%;
+    padding-right: 5%;
 }

@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ImageGetShibuService } from '../services/image-get-shibu.service';
-import { ImageGetCatsService } from '../services/image-get-cats.service';
-import { ImageGetBirdsService } from '../services/image-get-birds.service';
+import { ApiServiceService} from "../services/apiService.service";
+import { StatisticsService } from '../services/statistics.service';
 
 
 @Component({
@@ -12,34 +11,60 @@ import { ImageGetBirdsService } from '../services/image-get-birds.service';
 })
 export class Tab1Page {
 
-  constructor(private getShibuImage: ImageGetShibuService, private getCatImage: ImageGetCatsService, private getBirdImage: ImageGetBirdsService) {}
-  imageSource: string = "";
-
-  public getShibuImageCall() {
-    this.getShibuImage.getImageSource().subscribe({
-      next: (response: any) => {
-        this.imageSource = response;
-        console.log(this.imageSource)
-      }
-    })
+  constructor(public apiService: ApiServiceService, public statisticService: StatisticsService) {
   }
 
-  public getCatImageCall() {
-    this.getCatImage.getImageSource().subscribe({
-      next: (response: any) => {
-        this.imageSource = response;
-        console.log(this.imageSource)
-      }
-    })
-  }
+  statistics: number[] = [0, 0, 0];
 
-  public getBirdImageCall() {
-    this.getBirdImage.getImageSource().subscribe({
-      next: (response: any) => {
-        this.imageSource = response;
-        console.log(this.imageSource)
-      }
-    })
-  }
+	saveDogData() {
+		this.apiService.getDogImage();
 
+		this.statisticService.getData("stats").then(statistics => {
+		if (!statistics) {
+			this.statistics = [0, 0, 0];
+		}
+		else {
+			this.statistics = statistics;
+		}
+        this.statistics[0] = this.statistics[0] + 1;
+		this.statisticService.saveData("stats", this.statistics);
+      	console.log(statistics);
+		});
+	}
+	
+	saveCatData() {
+		this.apiService.getCatImage()
+
+		this.statisticService.getData("stats").then(statistics => {
+		if (!statistics) {
+			this.statistics = [0, 0, 0];
+		}
+		else {
+			this.statistics = statistics;
+		}	
+		this.statistics[1] = this.statistics[1] + 1;
+		this.statisticService.saveData("stats", this.statistics);	
+		console.log(statistics);
+		});
+	}
+
+	saveBirdData() {
+		this.apiService.getBirdImage()
+
+		this.statisticService.getData("stats").then(statistics => {
+		if (!statistics) {
+			this.statistics = [0, 0, 0];
+		}
+		else {
+			this.statistics = statistics;
+		}
+		this.statistics[2] = this.statistics[2] + 1;
+		this.statisticService.saveData("stats", this.statistics);
+		console.log(statistics);
+		});
+	}
 }
+
+
+
+

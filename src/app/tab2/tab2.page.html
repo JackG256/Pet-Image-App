@@ -1,13 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content [fullscreen]="true" scroll-y="false">
+  <div *ngIf="loadImage" class="image-container center">
+   <ion-img class="image-custom" [src]=imageUrl></ion-img>
+  </div>
 </ion-content>
